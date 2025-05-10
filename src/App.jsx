@@ -18,7 +18,8 @@ const App = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [modalImage, setModalImage] = useState(null);
+  const [modalData, setModalData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!query) return;
@@ -57,8 +58,18 @@ const App = () => {
     setPage(prev => prev + 1);
   };
 
-  const openModal = image => setModalImage(image);
-  const closeModal = () => setModalImage(null);
+  const openModal = image => {
+    setModalData({
+      url: image.urls.regular,
+      alt: image.alt_description || 'Image',
+    });
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalData(null);
+  };
 
   return (
     <>
@@ -74,7 +85,11 @@ const App = () => {
         {images.length > 0 && page < totalPages && !isLoading && (
           <LoadMoreBtn onClick={loadMore} />
         )}
-        {modalImage && <ImageModal image={modalImage} onClose={closeModal} />}
+        <ImageModal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          modalData={modalData}
+        />
       </main>
     </>
   );
