@@ -1,0 +1,10 @@
+.backdrop {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+}
