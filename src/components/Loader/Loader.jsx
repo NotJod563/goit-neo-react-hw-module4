@@ -1,18 +1,10 @@
-import { ColorRing } from 'react-loader-spinner';
+import { ClipLoader } from 'react-spinners';
 import css from './Loader.module.css';
 
 const Loader = () => {
   return (
-    <div className={css.backdrop}>
-      <ColorRing
-        visible={true}
-        height="80"
-        width="80"
-        ariaLabel="blocks-loading"
-        wrapperStyle={{}}
-        wrapperClass={css.loader}
-        colors={['#3f51b5', '#3f51b5', '#3f51b5', '#3f51b5', '#3f51b5']}
-      />
+    <div className={css.wrapper}>
+      <ClipLoader color="#3f51b5" size={48} speedMultiplier={1.2} />
     </div>
   );
 };
